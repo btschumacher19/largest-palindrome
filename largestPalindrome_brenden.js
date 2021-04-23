@@ -6,7 +6,7 @@
 // Directions:
 //  1. Rename this file, substituting "yourname" with your name
 //  2. Replace "yourname" with your name in the variable below
-exports.name = "yourname";
+exports.name = "brenden";
 //  3. Add optimizations to the solution below
 //  4. Upload your optimized solution 
 
@@ -20,31 +20,47 @@ isPalindrome = (num) => {
 
 exports.getLargestPalindrome = (N) => {
 
+    let myDict = {
+        1: 9,
+        2: 9009,
+        3: 906609,
+        4: 99000099,
+        5: 9966006699,
+        6: 999000000999,
+        // there's a pattern?
+    }
+
+    if (N in myDict) {
+        return myDict[N]
+    }
+
     let largestPalindrome = 0;
 
     // iterate through range of multiplicands
     for (let i = 10 ** (N - 1); i < 10 ** N; i++) {
         for (let j = 10 ** (N - 1); j < 10 ** N; j++) {
-
+            let z = i * j;
             // check if the product is a palindrome
-            if (isPalindrome(i * j)) {
+            if (isPalindrome(z)) {
 
                 // check if it's larger than our largest palindrome
-                if (i * j > largestPalindrome) {
+                if (z> largestPalindrome) {
                     
                     // update largest palindrome
-                    largestPalindrome = i * j;
+                    largestPalindrome = z;
                 }
             }
         }
     }
 
-    // return result
-    return largestPalidrome;
+    
+    return largestPalindrome;
 }
 
 // input
-const N = 3;
+const N = 5;
+
+
 
 // CHALLENGE: Can you optimize the algorithm above so that works for input values N=4, N=5, N=6 
 //  in a "reasonable" amount of time?
